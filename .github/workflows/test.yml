@@ -1,0 +1,14 @@
+name: test
+
+on:
+  - pull_request_target
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'refs/pull/${{ github.event.number }}/merge'
+      - run: git log --all --graph --date=short
